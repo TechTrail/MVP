@@ -1,0 +1,2 @@
+module BloodstocksHelper
+end

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bloodbank.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @bloodbank.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @bloodbank.city %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @bloodbank.email %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @bloodbank.mobile %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @bloodbank.website %>
+</p>
+
+<p>
+  <strong>Landline:</strong>
+  <%= @bloodbank.landline %>
+</p>
+
+
+<%= link_to 'Edit', edit_bloodbank_path(@bloodbank) %> |
+<%= link_to 'Back', bloodbanks_path %>

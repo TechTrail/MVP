@@ -1,0 +1,83 @@
+class BloodbankstocksController < ApplicationController
+  before_action :set_bloodbankstock, only: [:show, :edit, :update, :destroy]
+
+  # GET /bloodbankstocks
+  # GET /bloodbankstocks.json
+  def index
+   # @bloodbankstocks = Bloodbankstock.all
+
+@bloodbankstocks=Bloodbankstock.where(["bloodcomponentid = ? and orgid = ?", params[:bloodcomponentid], "1"])
+  end
+
+  # GET /bloodbankstock/search
+  # GET /bloodbankstock/search.json
+  def search
+  
+
+  end
+
+  # GET /bloodbankstocks/1
+  # GET /bloodbankstocks/1.json
+  def show
+  end
+
+  # GET /bloodbankstocks/new
+  def new
+    @bloodbankstock = Bloodbankstock.new
+  end
+
+  # GET /bloodbankstocks/1/edit
+  def edit
+  end
+
+  # POST /bloodbankstocks
+  # POST /bloodbankstocks.json
+  def create
+    @bloodbankstock = Bloodbankstock.new(bloodbankstock_params)
+
+    respond_to do |format|
+      if @bloodbankstock.save
+        format.html { redirect_to @bloodbankstock, notice: 'Bloodbankstock was successfully created.' }
+        format.json { render :show, status: :created, location: @bloodbankstock }
+      else
+        format.html { render :new }
+        format.json { render json: @bloodbankstock.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /bloodbankstocks/1
+  # PATCH/PUT /bloodbankstocks/1.json
+  def update
+    respond_to do |format|
+      if @bloodbankstock.update(bloodbankstock_params)
+        format.html { redirect_to @bloodbankstock, notice: 'Bloodbankstock was successfully updated.' }
+        format.json { render :show, status: :ok, location: @bloodbankstock }
+      else
+        format.html { render :edit }
+        format.json { render json: @bloodbankstock.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /bloodbankstocks/1
+  # DELETE /bloodbankstocks/1.json
+  def destroy
+    @bloodbankstock.destroy
+    respond_to do |format|
+      format.html { redirect_to bloodbankstocks_url, notice: 'Bloodbankstock was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_bloodbankstock
+      @bloodbankstock = Bloodbankstock.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def bloodbankstock_params
+      params.require(:bloodbankstock).permit(:bloodcomponentid, :orgid, :bloodgroupid, :units, :updatedate)
+    end
+end

@@ -1,0 +1,33 @@
+<h1>Listing bloodstocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Blood Bank</th>
+      <th>Blood Component</th>
+      <th>Blood Group</th>
+      <th>Units</th>
+      <th>Update Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bloodstocks.each do |bloodstock| %>
+      <tr>
+        <td><%= bloodstock.bloodbank_id %></td>
+        <td><%= bloodstock.bloodcomponentid %></td>
+        <td><%= bloodstock.bloodgroupid %></td>
+        <td><%= bloodstock.units %></td>
+        <td><%= bloodstock.updatedate %></td>
+        <td><%= link_to 'Show', bloodstock %></td>
+        <td><%= link_to 'Edit', edit_bloodstock_path(bloodstock) %></td>
+        <td><%= link_to 'Destroy', bloodstock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bloodstock', new_bloodstock_path %>

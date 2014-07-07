@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bloodcomponentid:</strong>
+  <%= @bloodstock.bloodcomponentid %>
+</p>
+
+<p>
+  <strong>Bloodbank:</strong>
+  <%= @bloodstock.bloodbank_id %>
+</p>
+
+<p>
+  <strong>Bloodgroupid:</strong>
+  <%= @bloodstock.bloodgroupid %>
+</p>
+
+<p>
+  <strong>Units:</strong>
+  <%= @bloodstock.units %>
+</p>
+
+<p>
+  <strong>Updatedate:</strong>
+  <%= @bloodstock.updatedate %>
+</p>
+
+<%= link_to 'Edit', edit_bloodstock_path(@bloodstock) %> |
+<%= link_to 'Back', bloodstocks_path %>

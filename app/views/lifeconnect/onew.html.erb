@@ -1,0 +1,50 @@
+<%= form_for :lifeconnect, url: lifeconnect_search_path do |f| %>
+  
+ <p>
+   <%= f.label :bloodgroupid %>
+   <select name="lifeconnect[bloodgroupid]" id="lifeconnect[bloodgroupid]">
+     <option value="O+">O +</option>
+     <option value="O-">O -</option>
+     <option value="A+">A +</option>
+     <option value="A-">A -</option>
+     <option value="B+">B +</option>
+     <option value="B-">B -</option>
+     <option value="AB+">AB +</option>
+     <option value="AB-">AB -</option>
+   </select>
+ </p>
+
+ <p>
+   <%= f.label :bloodcomponentid %>
+   <!--%= f.text_field :bloodcomponentid %-->
+   <select name="lifeconnect[bloodcomponentid]" id="lifeconnect[bloodcomponentid]">
+     <option value="WB">Whole Blood</option>
+     <option value="PRC">Packed Red Cells</option>
+     <option value="FFP">Fresh Frozen Plasma/FFP</option>
+     <option value="PL">Platelets</option>
+     <option value="LP">Liquid Plasma</option>
+     <option value="CRYO">Cryo Precipitate</option>
+   </select>
+ </p>
+ 
+ <!--p>
+    <%= f.label :bloodbank_id %>
+  <%= select_tag('lifeconnect[bloodbank_id]', options_from_collection_for_select(@bloodbank, "id", "name")) %>
+  </p-->
+
+<p>
+    City
+    <!--%= f.text_field :city %-->
+    <%= select_tag('lifeconnect[city]', options_from_collection_for_select(@bloodbank, "city", "city")) %>
+  </p>
+
+ <!--p>
+    Area
+    <%= f.text_field :area %>
+ </p-->
+ 
+  <p>
+    <%= f.submit :search %>
+  </p>
+<% end %>
+

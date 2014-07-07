@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bloodcomponentid: MyString
+  orgid: 1
+  bloodgroupid: MyString
+  units: 1
+  updatedate: 2014-06-13
+
+two:
+  bloodcomponentid: MyString
+  orgid: 1
+  bloodgroupid: MyString
+  units: 1
+  updatedate: 2014-06-13

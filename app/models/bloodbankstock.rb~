@@ -1,0 +1,6 @@
+class Bloodbankstock < ActiveRecord::Base
+
+belongs_to :user
+end
+
+

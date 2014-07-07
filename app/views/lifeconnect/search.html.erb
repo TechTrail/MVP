@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <style>
+      a {
+        color: #5EC7F6;
+      }
+
+      [data-tooltip] {
+        position: relative;
+      }
+
+      [data-tooltip]:before,
+      [data-tooltip]:after {
+        display: none;
+        position: absolute;
+        top: 0;
+      }
+
+      [data-tooltip]:before {
+        border-bottom: .6em solid #09f;
+        border-left: 7px solid;
+        border-right: 7px solid;
+        content: "";
+        left: 20px;
+        margin-top: 1em;
+      }
+
+      [data-tooltip]:after {
+        background-color: #0099ff;
+        border: 4px solid #0099ff;
+        border-radius: 7px;
+        color: #ffffff;
+        content: attr(data-tooltip-label) ":\A" attr(data-tooltip-message);
+        left: 0;
+        margin-top: 1.5em;
+        padding: 5px 15px;
+        white-space: pre-wrap;
+        width: 250px;
+      }
+
+      [data-tooltip]:hover:after,
+      [data-tooltip]:hover:before {
+        display: block;
+      }
+</style>
+  </head>
+
+  <body>
+    
+   <div class="container">
+	   <div class="row">
+		  <div class=" main" >
+		    <h3 class="sub-header">
+          <% @bloodstocks.find(1) do |firstObj|%>
+          Search Results - <%= firstObj.bloodgroupid %> - <%= firstObj.bloodcomponentid %> - <%= firstObj.bloodbank.city %></h3>
+          <% end %>
+        </h3>
+    		 <div class="table-responsive col-sm-5 col-md-10">
+    			<form class="form-searchresults" role="form" method="post" action="newrequest.html?bid=1">
+    			  <table class="table table-striped">
+    				<thead>
+    				  <tr>
+      					<th>BLOOD BANK</th>
+      					<th>STOCK(units)</th>
+      					<th>CONTACT NUMBER</th>
+    				  </tr>
+    				</thead>
+    				<tbody>
+             <% @bloodstocks.each do |bloodbankstock| %>
+              <% if bloodbankstock.units <= 0; next; end; %>
+              <tr>
+      					<td><a href="#" data-tooltip data-tooltip-label='<%= bloodbankstock.bloodbank.name %>' data-tooltip-message='<%= bloodbankstock.bloodbank.address %>    moblie:<%=bloodbankstock.bloodbank.mobile %>   Email:<%= bloodbankstock.bloodbank.email %> website:<%= bloodbankstock.bloodbank.website %>' ><%= bloodbankstock.bloodbank.name %></a></td>
+      					<td><%= bloodbankstock.units %></td>
+      					<td><abbr title="Phone">P:</abbr><a href="tel:+912024449527"><%= bloodbankstock.bloodbank.landline %></a></td>
+    				  </tr>
+    				 <% end %>
+    				</tbody>
+    			  </table>
+		    	</form>
+		    </div>
+		  </div>
+	  </div>
+
+    <hr><%= link_to '<<Back', lifeconnect_new_path %>
+
+  </div><!--/.container-->
+</body>

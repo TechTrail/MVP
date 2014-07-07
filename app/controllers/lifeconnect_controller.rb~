@@ -1,0 +1,28 @@
+class LifeconnectController < ApplicationController
+def new
+ @bloodbank = Bloodbank.all;
+end
+def search
+    logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+    bloodcomponentid = params[:lifeconnect][:bloodcomponentid]
+    bloodgroupid = params[:lifeconnect][:bloodgroupid]
+    city = params[:lifeconnect][:city]
+
+    @bloodstocks = Bloodstock.joins(:bloodbank).where(bloodbanks: {city: city}, :bloodstocks: {bloodcomponentid: bloodcomponentid, bloodgroupid: bloodgroupid})
+                #.where(bloodstocks: {bloodcomponentid: bloodcomponentid, bloodgroupid: bloodgroupid})
+
+    #@bloodstocks = Bloodstock.find_by_sql("SELECT bloodstocks.* FROM bloodstocks INNER JOIN bloodbanks ON bloodbanks.id = bloodstocks.bloodbank_id WHERE bloodbanks.city = '#{city}' AND bloodstocks.bloodcomponentid = '#{bloodcomponentid}' AND bloodstocks.bloodgroupid = '#{bloodgroupid}'")
+
+    logger.info "The blood stock info"
+    @bloodstocks.each do |stock|
+        logger.info "Stock info : "+ stock.bloodbank.name
+    end
+end
+
+private
+  
+  def article_params
+    params.require(:lifeconnect).permit(:bloodcomponentid, :bloodgroupid, :city)
+  end
+
+end
